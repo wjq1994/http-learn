@@ -1,0 +1,22 @@
+{
+  "name": "9.http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.static-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "bin": {
+    "zh-server": "./bin/www"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.0.1",
+    "mime": "^2.4.4",
+    "nunjucks": "^3.2.0"
+  }
+}
