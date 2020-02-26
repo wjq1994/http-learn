@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="chinese">中文</button>
+    <button id="ja">日文</button>
+    <div id="content"></div>
+    <script>
+        chinese.addEventListener('click',function () {
+           let xhr = new XMLHttpRequest();
+           xhr.open('get','http://localhost:3000/encoding',true);
+           xhr.setRequestHeader('Accept-Language','zh-CN,zh;q=0.9,en;q=0.7')
+           xhr.onload = function () { // 当前服务端的状态是200 readState = 4
+            content.innerHTML = xhr.responseText;
+           }
+           xhr.send();
+        });
+        ja.addEventListener('click',function () {
+            let xhr = new XMLHttpRequest();
+            xhr.open('get','http://localhost:3000/encoding',true);
+            xhr.setRequestHeader('Accept-Language','ja,zh;q=0.9')
+            xhr.onload = function () { // 当前服务端的状态是200 readState = 4
+                content.innerHTML = xhr.responseText;
+            }
+             xhr.send();
+        })
+    </script>
+</body>
+</html>

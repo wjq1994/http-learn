@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    hello
+    <button id="load">动态加载</button>
+    <!-- 前端会和后端定制接口 路径 + 数据 + 请求方法 /user get-->
+    <script>
+        // 默认简单请求 get 和 post 复杂请求  = get/post +自定义header
+        //（ xhr axios） fetch 基于promise，缺点太原生 不支持终端
+        let xhr = new XMLHttpRequest();
+        xhr.open('DELETE','http://localhost:3000/user',true);
+        xhr.responseType = 'json';
+        xhr.withCredentials = true;
+        // xhr.setRequestHeader('token','a')
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+        xhr.onload = function (params) { // 当前服务端的状态是200 readState = 4
+            console.log(typeof xhr.response)
+        }
+        xhr.send();
+
+        // jsonp 为什么能跨域 webpack动态加载
+        // 动态的创建script标签 链接服务端的资源 
+        function zf(data) {
+            console.log(data);
+        }
+        load.addEventListener('click',function () {
+            let script = document.createElement('script');
+            script.src = 'http://localhost:3000/jsonp?callback=zf';
+            document.body.appendChild(script);
+
+            // zf('a=1')
+        })
+    </script>
+</body>
+</html>
